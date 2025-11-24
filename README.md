@@ -1,5 +1,5 @@
-# Proposta-de-experimento-Medicao-e-Experimentacao# Plano de Experimento - Scoping e Planejamento  
-## Qualidade de Dados e Impacto de Ruído em Modelos de Classificação
+# Plano de Experimento - Scoping e Planejamento  
+## Identiticação Básica, Contexto e Problema
 
 ---
 
