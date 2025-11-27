@@ -15,7 +15,7 @@ Impacto da presença de ruído nos dados sobre a precisão de algoritmos de clas
 
 ### 1.4 Datas
 **Data de criação:** 20/11/2025  
-**Última atualização:** 26/11/2025
+**Última atualização:** 23/11/2025
 
 ### 1.5 Autores
 - **Autor:** Gabriel Henrique Silva Pereira  
@@ -44,7 +44,7 @@ Modelos de aprendizado de máquina são amplamente utilizados em aplicações re
 Estudos mostram que classificadores são sensíveis à qualidade dos dados, mas o grau de sensibilidade varia conforme o algoritmo. Há falta de experimentos que avaliem níveis específicos de ruído e comparações diretas entre classificadores simples.
 
 ### 2.4 Referencial Teórico e Empírico Essencial
-Baseia-se em três pilares: Qualidade de Dados, Aprendizado de Máquina Supervisionado e Engenharia de Software Empírica.
+Baseia-se em três pilares: Qualidade de Dados, Aprendizado de Mático Supervisionado e Engenharia de Software Empírica.
 
 ## 3. Objetivos e Questões (GQM)
 
@@ -233,6 +233,47 @@ Estudantes de pós-graduação com conhecimento em machine learning (simulação
 - Características intrínsecas dos datasets
 - Complexidade do problema de classificação
 - Número de features e instâncias
+
+### Tabela de Variáveis do Experimento
+
+| Tipo de Variável | Nome da Variável | Descrição | Níveis/Valores |
+|------------------|------------------|-----------|----------------|
+| Independente | Tipo de Algoritmo | Algoritmo de classificação utilizado | Regressão Logística, Decision Tree, SVM |
+| Independente | Nível de Ruído | Percentual de ruído adicionado aos dados | 0%, 10%, 20%, 30% |
+| Dependente | Acurácia | Percentual de classificações corretas | Valores contínuos (0-100%) |
+| Dependente | F1-Score | Média harmônica entre precisão e recall | Valores contínuos (0-100%) |
+| Dependente | Precisão | Proporção de VP entre preditos positivos | Valores contínuos (0-100%) |
+| Dependente | Recall | Proporção de VP entre reais positivos | Valores contínuos (0-100%) |
+| Dependente | ROC-AUC | Área sob a curva ROC | Valores contínuos (0-1) |
+| Controle | Dataset | Conjunto de dados utilizado | Iris, Wine, Breast Cancer |
+| Controle | Divisão Treino/Teste | Proporção para divisão dos dados | 70%/30% fixo |
+| Controle | Hiperparâmetros | Configurações dos algoritmos | Valores padrão do scikit-learn |
+| Confusão | Complexidade do Dataset | Número de features e instâncias | Variável conforme dataset |
+| Confusão | Experiência do Participante | Conhecimento em ML | Auto-avaliada em questionário |
+
+### Tabela de Fatores e Tratamentos
+
+| Fator | Níveis | Descrição dos Tratamentos | Combinações Experimentais |
+|-------|--------|---------------------------|---------------------------|
+| Tipo de Algoritmo | 3 níveis | **RL:** Regressão Logística com parâmetros padrão<br>**DT:** Decision Tree com max_depth=5<br>**SVM:** SVM com kernel RBF e C=1.0 | 12 combinações totais (3 algoritmos × 4 níveis de ruído) |
+| Nível de Ruído | 4 níveis | **0%:** Dataset original sem modificações<br>**10%:** Adição de 10% de ruído gaussiano<br>**20%:** Adição de 20% de ruído gaussiano<br>**30%:** Adição de 30% de ruído gaussiano | |
+
+### Matriz de Combinações Experimentais
+
+| Combinação | Algoritmo | Nível de Ruído | Descrição do Tratamento |
+|------------|-----------|----------------|-------------------------|
+| 1 | Regressão Logística | 0% | RL com dados originais |
+| 2 | Regressão Logística | 10% | RL com 10% de ruído |
+| 3 | Regressão Logística | 20% | RL com 20% de ruído |
+| 4 | Regressão Logística | 30% | RL com 30% de ruído |
+| 5 | Decision Tree | 0% | DT com dados originais |
+| 6 | Decision Tree | 10% | DT com 10% de ruído |
+| 7 | Decision Tree | 20% | DT com 20% de ruído |
+| 8 | Decision Tree | 30% | DT com 30% de ruído |
+| 9 | SVM | 0% | SVM com dados originais |
+| 10 | SVM | 10% | SVM com 10% de ruído |
+| 11 | SVM | 20% | SVM com 20% de ruído |
+| 12 | SVM | 30% | SVM com 30% de ruído |
 
 ## 9. Desenho Experimental
 
