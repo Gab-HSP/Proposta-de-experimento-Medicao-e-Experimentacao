@@ -1,278 +1,439 @@
-# Plano de Experimento - Scoping e Planejamento  
-## Identiticação Básica, Contexto e Problema
+# Plano de Experimento - Scoping e Planejamento
 
----
+## 1. Identificação Básica
 
-# 1. Identificação Básica
-
-## 1.1 Título do Experimento
+### 1.1 Título do Experimento
 Impacto da presença de ruído nos dados sobre a precisão de algoritmos de classificação supervisionada
 
-## 1.2 Código / Id
+### 1.2 Código / ID
 `EXP-TCC-2025-RUIDO-DADOS-CLASSIFICACAO`
 
-## 1.3 Versão do Documento
+### 1.3 Versão do Documento
 - **Versão Atual:** v1.0
+- **Histórico de Revisão:**
+  - v1.0 (23/11/2025): Versão inicial do plano de experimento
 
-## 1.4 Datas
+### 1.4 Datas
 **Data de criação:** 20/11/2025  
-**Última atualização:** 23/11/2025
+**Última atualização:** 26/11/2025
 
-## 1.5 Autores
+### 1.5 Autores
 - **Autor:** Gabriel Henrique Silva Pereira  
   - **Curso / Área:** Engenharia de Software  
   - **Instituição:** PUC Minas  
   - **E-mail:** gabriel.pereira.676690@sga.pucminas.br  
 
-## 1.6 Responsável Principal
+### 1.6 Responsável Principal
 - **Responsável Principal (PI):** Gabriel Henrique Silva Pereira
 
-## 1.7 Projeto / Produto
-Este plano de experimento integra o Trabalho de Conclusão de Curso (TCC) na área de **Engenharia de Dados**, **Qualidade de Dados** e **Aprendizado de Máquina**, com foco em:
+### 1.7 Projeto / Produto / Iniciativa Relacionada
+Este plano de experimento integra o Trabalho de Conclusão de Curso (TCC) na área de Engenharia de Dados, Qualidade de Dados e Aprendizado de Máquina.
 
-- Avaliar o impacto de **ruído em conjuntos de dados** sobre a performance de **classificadores supervisionados**;
-- Comparar diferentes **níveis de ruído** e seus efeitos sobre métricas de desempenho;
-- Explorar questões relacionadas à **robustez de modelos** frente a dados alterados artificialmente.
+## 2. Contexto e Problema
 
----
+### 2.1 Descrição do Problema / Oportunidade
+Modelos de aprendizado de máquina são amplamente utilizados em aplicações reais, mas sua performance depende fortemente da qualidade dos dados de entrada. Em muitos cenários, conjuntos de dados podem conter erros de medição, inconsistências, rótulos incorretos, ruído aleatório, registros duplicados, faltantes ou contraditórios. Esse tipo de ruído pode degradar a precisão dos modelos, afetar a capacidade de generalização, aumentar o overfitting e causar interpretações incorretas.
 
-# 2. Contexto do Problema
+### 2.2 Contexto Organizacional e Técnico
+- **Ambiente:** Acadêmico (disciplina de experimentação)
+- **Domínio:** Conjuntos de dados tabulares clássicos de classificação
+- **Técnicas:** Machine Learning supervisionado
+- **Ferramentas:** Python, scikit-learn, Pandas, NumPy
 
-## 2.1 Descrição do Problema / Oportunidade
-Modelos de aprendizado de máquina são amplamente utilizados em aplicações reais, mas sua performance depende fortemente da **qualidade dos dados de entrada**. Em muitos cenários, conjuntos de dados podem conter:
+### 2.3 Trabalhos e Evidências Prévias
+Estudos mostram que classificadores são sensíveis à qualidade dos dados, mas o grau de sensibilidade varia conforme o algoritmo. Há falta de experimentos que avaliem níveis específicos de ruído e comparações diretas entre classificadores simples.
 
-- erros de medição,  
-- inconsistências,  
-- rótulos incorretos,  
-- ruído aleatório,  
-- registros duplicados, faltantes ou contraditórios.
+### 2.4 Referencial Teórico e Empírico Essencial
+Baseia-se em três pilares: Qualidade de Dados, Aprendizado de Máquina Supervisionado e Engenharia de Software Empírica.
 
-Esse tipo de ruído pode:
+## 3. Objetivos e Questões (GQM)
 
-- degradar a precisão dos modelos,  
-- afetar a capacidade de generalização,  
-- aumentar o overfitting,  
-- causar interpretações incorretas.  
-
-Entretanto, a literatura ainda apresenta lacunas sobre:
-
-- até que ponto diferentes níveis de ruído impactam classificadores comuns;  
-- se certos algoritmos são mais robustos a ruído do que outros;  
-- qual tipo de métrica mais sofre impacto;  
-- como ruídos nos rótulos afetam mais do que ruído nas features.
-
-O problema central é:
-
-> **Problema:** Não está claro, de forma empírica, qual é o impacto de diferentes níveis de ruído nos dados sobre o desempenho de algoritmos de classificação supervisionada.
-
-## 2.2 Contexto Organizacional e Técnico
-O experimento será planejado considerando:
-
-- **Ambiente acadêmico** (disciplina de experimentação);
-- **Domínio:** conjuntos de dados tabulares clássicos de classificação;
-- **Técnicas de machine learning:** Regressão Logística, Decision Tree e SVM;
-- **Níveis de ruído:** 0%, 10%, 20% e 30%;
-- **Ambiente técnico:**
-  - Python e bibliotecas como scikit-learn;
-  - Ferramentas para manipulação de dados como Pandas e NumPy;
-  - Scripts para geração artificial de ruído em dados.
-
-## 2.3 Trabalhos e Evidências Prévias
-Evidências que motivam o estudo incluem:
-
-- Trabalhos que mostram que **classificadores são sensíveis à qualidade dos dados**, mas o grau de sensibilidade varia conforme o algoritmo.  
-- Estudos sobre **robustez em modelos supervisionados**, que sugerem variação significativa no desempenho à medida que se introduz ruído nos rótulos.  
-- Práticas de engenharia de dados demonstram que ruído é comum em pipelines reais.  
-- Falta de experimentos que avaliem **níveis específicos de ruído** e **comparações diretas entre classificadores simples**.
-
-## 2.4 Referencial Teórico e Empírico Essencial
-O experimento se apoia em três bases:
-
-### 1. **Qualidade de Dados**
-- Conceitos de acurácia, consistência, confiabilidade;
-- Impactos do ruído (aleatório ou sistemático);
-- Técnicas de detecção e mitigação de ruído.
-
-### 2. **Aprendizado de Máquina Supervisionado**
-- Funcionamento de classificadores simples:  
-  - Regressão Logística  
-  - Decision Tree  
-  - Support Vector Machine  
-- Métricas de avaliação: Acurácia, Precisão, Recall, F1-score.
-
-### 3. **Engenharia de Software Empírica**
-- Variáveis independentes: níveis de ruído;
-- Variáveis dependentes: métricas de desempenho;
-- Hipóteses estatísticas;
-- Ameaças à validade e desenho experimental.
-
----
-
-# 3. Objetivos e Questões (GQM)
-
-## 3.1 Objetivo Geral
+### 3.1 Objetivo Geral
 **Analisar** o impacto de diferentes níveis de ruído em conjuntos de dados  
 **com o propósito de** avaliar a degradação de desempenho em algoritmos de classificação  
 **sob a perspectiva** de cientistas de dados e engenheiros de machine learning  
 **no contexto** de modelos supervisionados aplicados a dados tabulares.
 
----
+### 3.2 Objetivos Específicos
+**O1.** Avaliar o impacto do ruído na acurácia dos classificadores  
+**O2.** Comparar a robustez de diferentes algoritmos frente ao ruído  
+**O3.** Analisar o efeito do ruído nas demais métricas de classificação  
+**O4.** Determinar se o aumento progressivo de ruído causa degradação linear ou exponencial
 
-## 3.2 Objetivos Específicos
-**O1.** Avaliar o impacto do ruído na acurácia dos classificadores.  
-**O2.** Comparar a robustez de diferentes algoritmos frente ao ruído.  
-**O3.** Analisar o efeito do ruído nas demais métricas (precisão, recall, F1).  
-**O4.** Determinar se o aumento progressivo de ruído causa degradação linear ou exponencial.
+### 3.3 Questões de Pesquisa / de Negócio
+**Q1.1:** Como a acurácia varia conforme aumenta o ruído?  
+**Q1.2:** Existe um nível crítico de ruído em que o modelo perde utilidade?  
+**Q1.3:** A queda de performance é consistente entre diferentes datasets?  
 
----
+**Q2.1:** Qual algoritmo mantém melhor desempenho com 10%–30% de ruído?  
+**Q2.2:** Algoritmos de árvore são mais robustos que SVM e regressão?  
+**Q2.3:** Há diferença na robustez entre classificadores lineares e não-lineares?  
 
-## 3.3 Questões de Pesquisa (por objetivo)
+**Q3.1:** O F1-score é mais sensível ao ruído do que a acurácia?  
+**Q3.2:** Ruído afeta mais precisão ou recall?  
+**Q3.3:** Como o ruído impacta a curva ROC-AUC?  
 
-### **O1 – Acurácia**
-- **Q1.1:** Como a acurácia varia conforme aumenta o ruído?  
-- **Q1.2:** Existe um nível crítico de ruído em que o modelo perde utilidade?
+**Q4.1:** A queda de desempenho é linear conforme o ruído aumenta?  
+**Q4.2:** Há aumento de variabilidade nos resultados com mais ruído?  
+**Q4.3:** Existe um ponto de inflexão onde a degradação se acelera?
 
-### **O2 – Robustez do Algoritmo**
-- **Q2.1:** Qual algoritmo mantém melhor desempenho com 10%–30% de ruído?  
-- **Q2.2:** Algoritmos de árvore são mais robustos que SVM e regressão?
+### 3.4 Métricas Associadas (GQM)
 
-### **O3 – Outras Métricas**
-- **Q3.1:** O F1-score é mais sensível ao ruído do que a acurácia?  
-- **Q3.2:** Ruído afeta mais precisão ou recall?
+| Objetivo | Pergunta | Métrica | Descrição | Unidade |
+|----------|----------|---------|-----------|---------|
+| O1 | Q1.1 | M1 – Acurácia | Percentual de classificações corretas | % |
+| O1 | Q1.1 | M2 – Acurácia Balanceada | Média das acurácias por classe | % |
+| O1 | Q1.2 | M3 – Queda Percentual | Diferença entre acurácia original e com ruído | % |
+| O1 | Q1.3 | M4 – Consistência entre Datasets | Variação da queda entre diferentes bases | Coeficiente |
+| O2 | Q2.1 | M5 – Robustez Relativa | Acurácia média por algoritmo em todos níveis | Índice |
+| O2 | Q2.2 | M6 – Diferença de Robustez | Comparação entre tipos de algoritmos | % |
+| O2 | Q2.3 | M7 – Sensibilidade ao Ruído | Taxa de mudança por tipo de algoritmo | %/nível |
+| O3 | Q3.1 | M8 – F1-Score | Média harmônica entre precisão e recall | % |
+| O3 | Q3.1 | M9 – Diferença F1-Acurácia | Comparação entre métricas | Pontos % |
+| O3 | Q3.2 | M10 – Precisão | Verdadeiros positivos ÷ positivos previstos | % |
+| O3 | Q3.2 | M11 – Recall | Verdadeiros positivos ÷ positivos reais | % |
+| O3 | Q3.3 | M12 – ROC-AUC | Área sob a curva ROC | Escala 0-1 |
+| O4 | Q4.1 | M13 – Taxa de Degradação | Acurácia perdida / percentual de ruído | %/nível |
+| O4 | Q4.2 | M14 – Variância | Dispersão das métricas entre execuções | Unidade estatística |
+| O4 | Q4.3 | M15 – Ponto de Inflexão | Nível onde degradação muda de padrão | % ruído |
 
-### **O4 – Intensidade do Impacto**
-- **Q4.1:** A queda de desempenho é linear conforme o ruído aumenta?  
-- **Q4.2:** Há aumento de variabilidade nos resultados com mais ruído?
-
----
-
-## 3.4 Métricas Associadas
-
-| Objetivo | Pergunta | Métrica | Descrição |
-|----------|----------|---------|-----------|
-| O1 | Q1.1 | M1 – Acurácia | Percentual de classificações corretas |
-| O1 | Q1.2 | M2 – Queda percentual da acurácia | Diferença entre acurácia original e com ruído |
-| O2 | Q2.1 | M3 – Robustez relativa | Acurácia média por algoritmo em todos níveis |
-| O3 | Q3.1 | M4 – F1-score | Média harmônica entre precisão e recall |
-| O3 | Q3.2 | M5 – Precisão | Verdadeiros positivos ÷ positivos previstos |
-| O3 | Q3.2 | M6 – Recall | Verdadeiros positivos ÷ positivos reais |
-| O4 | Q4.1 | M7 – Taxa de degradação | Acurácia perdida / percentual de ruído |
-| O4 | Q4.2 | M8 – Variância da performance | Dispersão das métricas entre execuções |
-
----
-
-## 3.5 Tabela Geral das Métricas
+### Tabela de Métricas Detalhadas
 
 | Métrica | Descrição | Unidade |
 |---------|-----------|---------|
-| M1 | Acurácia | % |
-| M2 | Queda percentual da acurácia | % |
-| M3 | Robustez relativa | índice |
-| M4 | F1-score | % |
-| M5 | Precisão | % |
-| M6 | Recall | % |
-| M7 | Taxa de degradação | % por nível de ruído |
-| M8 | Variância da performance | unidade estatística |
+| M1 – Acurácia | Percentual de classificações corretas no total | % |
+| M2 – Acurácia Balanceada | Média das acurácias por classe, considerando desbalanceamento | % |
+| M3 – Queda Percentual | Diferença percentual entre acurácia original e com ruído | % |
+| M4 – Consistência entre Datasets | Coeficiente de variação da queda entre diferentes bases | Coeficiente |
+| M5 – Robustez Relativa | Índice comparativo de manutenção de performance | Índice 0-1 |
+| M6 – Diferença de Robustez | Comparação percentual entre tipos de algoritmos | % |
+| M7 – Sensibilidade ao Ruído | Taxa de mudança de performance por nível de ruído | %/nível |
+| M8 – F1-Score | Média harmônica entre precisão e recall | % |
+| M9 – Diferença F1-Acurácia | Diferença em pontos percentuais entre F1 e acurácia | Pontos % |
+| M10 – Precisão | Proporção de verdadeiros positivos entre preditos positivos | % |
+| M11 – Recall | Proporção de verdadeiros positivos entre reais positivos | % |
+| M12 – ROC-AUC | Área sob a curva Característica de Operação do Receptor | Escala 0-1 |
+| M13 – Taxa de Degradação | Razão entre perda de acurácia e nível de ruído | %/nível |
+| M14 – Variância | Medida de dispersão dos resultados entre execuções | Unidade estatística |
+| M15 – Ponto de Inflexão | Nível de ruído onde padrão de degradação muda | % ruído |
 
----
+## 4. Escopo e Contexto do Experimento
 
-# 4. Escopo e Contexto do Experimento
+### 4.1 Escopo Funcional / de Processo
+**Incluído:**
+- Conjuntos de dados tabulares clássicos (Iris, Wine, Breast Cancer)
+- Algoritmos: Regressão Logística, Decision Tree, SVM
+- Níveis de ruído: 0%, 10%, 20%, 30%
+- Adição de ruído em features numéricas
+- Métricas de avaliação de classificação
 
-## 4.1 Escopo Incluído
-- Conjuntos de dados tabulares clássicos (ex: Iris, Wine, Breast Cancer, ou dataset sintético);
-- Algoritmos: Regressão Logística, Decision Tree e SVM;
-- Níveis de ruído artificial: 0%, 10%, 20%, 30%;
-- Adição de ruído em features e/ou labels;
-- Avaliação por métricas de classificação;
-- Comparação direta entre níveis e algoritmos.
+**Excluído:**
+- Algoritmos de deep learning
+- Dados de séries temporais ou imagens
+- Correção automática de ruído
+- Pipelines completos de MLops
 
-## 4.2 Escopo Excluído
-- Algoritmos de deep learning;
-- Dados de séries temporais ou imagens;
-- Correção automática de ruído;
-- Execução de pipelines completos de MLops.
+### 4.2 Contexto do Estudo
+- **Tipo de organização:** Acadêmica
+- **Projeto:** TCC em Engenharia de Software
+- **Experiência:** Nível intermediário em machine learning
 
----
+### 4.3 Premissas
+- É possível gerar ruído artificial de forma controlada
+- Bibliotecas disponíveis permitem executar todos os algoritmos
+- Datasets selecionados permitem classificação supervisionada
 
-## 4.3 Premissas
-- É possível gerar ruído artificial de forma controlada.  
-- As bibliotecas disponíveis permitem executar todos os algoritmos.  
-- O dataset selecionado permite classificação binária ou multiclasse.  
-- As métricas serão calculáveis em todos os cenários.
+### 4.4 Restrições
+- Tempo limitado da disciplina para planejamento
+- Recursos computacionais básicos
+- Não envolvimento de grandes bases reais
 
----
+### 4.5 Limitações Previstas
+- Resultados podem não generalizar para deep learning
+- Ruído sintético pode não refletir perfeitamente ruído real
+- Apenas três algoritmos considerados
 
-## 4.4 Restrições
-- Tempo limitado da disciplina para planejamento.  
-- Recursos computacionais básicos (notebook pessoal).  
-- Não envolvimento de grandes bases de dados reais.  
-- Não haverá execução real do experimento neste momento.
+## 5. Stakeholders e Impacto Esperado
 
----
+### 5.1 Stakeholders Principais
+- Pesquisador (PI)
+- Professor orientador
+- Cientistas de dados
+- Engenheiros de machine learning
 
-## 4.5 Limitações Previstas
-- Resultados futuros podem não generalizar para deep learning.  
-- Ruído sintético pode não refletir perfeitamente ruído real.  
-- Apenas três algoritmos serão considerados.  
-- Conjuntos de dados pequenos podem limitar análise.  
+### 5.2 Interesses e Expectativas dos Stakeholders
+- **PI:** Realizar experimento claro e replicável
+- **Professor:** Coerência metodológica e validade
+- **Cientistas de dados:** Entender robustez dos algoritmos
+- **Eng. ML:** Ajustar modelos em cenários com ruído
 
----
+### 5.3 Impactos Potenciais no Processo / Produto
+- Melhor compreensão da relação qualidade de dados vs performance
+- Orientação sobre algoritmos mais robustos
+- Apoio à tomada de decisão em pipelines de dados
 
-# 5. Stakeholders e Impacto Esperado
+## 6. Riscos de Alto Nível, Premissas e Critérios de Sucesso
 
-## 5.1 Stakeholders Principais
-- Pesquisador (PI)  
-- Professor orientador  
-- Cientistas de dados  
-- Engenheiros de machine learning  
-- Comunidade acadêmica  
-- Profissionais de Engenharia de Dados
+### 6.1 Riscos de Alto Nível
+- Escolha inadequada do dataset ou algoritmos
+- Níveis de ruído insuficientes para diferença estatística
+- Alta variabilidade nos resultados
 
----
+### 6.2 Critérios de Sucesso Globais
+- Planejamento claro e consistente
+- Métricas adequadas e alinhadas às questões
+- Desenho experimental replicável
 
-## 5.2 Interesses e Expectativas
+### 6.3 Critérios de Parada Antecipada
+- Falta de acesso aos datasets planejados
+- Dificuldade de implementação dos algoritmos
+- Mudança de escopo do TCC
 
-| Stakeholder | Interesse / Expectativa |
-|-------------|-------------------------|
-| PI | Realizar experimento claro e replicável |
-| Professor | Coerência metodológica e validade |
-| Cientistas de dados | Entender robustez dos algoritmos |
-| Eng. ML | Ajustar modelos em cenários com ruído |
-| Eng. Dados | Compreender impacto da qualidade de dados |
-| Academia | Evidências empíricas sobre ruído |
+## 7. Modelo Conceitual e Hipóteses
 
----
+### 7.1 Modelo Conceitual do Experimento
+O experimento propõe que o aumento progressivo de ruído nos dados de treinamento causa degradação não-linear no desempenho dos classificadores, com algoritmos baseados em árvore demonstrando maior robustez comparada a modelos lineares.
 
-## 5.3 Impactos Potenciais
-- Melhor compreensão da relação entre qualidade de dados e performance.  
-- Orientação sobre quais algoritmos são mais robustos.  
-- Apoio à tomada de decisão em pipelines de dados.  
-- Reflexões para estratégias de limpeza ou detecção de ruído.
+### 7.2 Hipóteses Formais
+**H₀:** Não há diferença significativa no desempenho dos classificadores entre diferentes níveis de ruído nos dados  
+**H₁:** Existe diferença significativa no desempenho dos classificadores conforme aumenta o nível de ruído nos dados
 
----
+### 7.3 Nível de Significância e Considerações de Poder
+- **Nível de significância (α):** 0,05
+- **Poder estatístico (1-β):** 80%
+- **Tamanho de efeito considerado:** moderado (d = 0,5)
 
-# 6. Riscos, Critérios de Sucesso e Parada
+## 8. Variáveis, Fatores, Tratamentos e Objetos de Estudo
 
-## 6.1 Riscos de Alto Nível
-- Escolha inadequada do dataset ou algoritmos.  
-- Níveis de ruído insuficientes para gerar diferença estatística.  
-- Alta variabilidade nos resultados, dificultando conclusão.  
-- Inadequação das métricas escolhidas.
+### 8.1 Objetos de Estudo
+- Módulos de código de classificação
+- Conjuntos de dados de benchmark
+- Métricas de avaliação de modelos
 
----
+### 8.2 Sujeitos / Participantes (Visão Geral)
+Estudantes de pós-graduação com conhecimento em machine learning (simulação computacional)
 
-## 6.2 Critérios de Sucesso Globais
-- Planejamento claro e consistente.  
-- Métricas adequadas e alinhadas às questões.  
-- Desenho experimental replicável.  
-- Base sólida para execução futura no TCC.
+### 8.3 Variáveis Independentes (Fatores) e Seus Níveis
+- **Fator A:** Tipo de algoritmo (Regressão Logística, Decision Tree, SVM)
+- **Fator B:** Nível de ruído (0%, 10%, 20%, 30%)
 
----
+### 8.4 Tratamentos (Condições Experimentais)
+12 condições experimentais (3 algoritmos × 4 níveis de ruído)
 
-## 6.3 Critérios de Parada Antecipada
-- Falta de acesso aos datasets planejados.  
-- Dificuldade de implementação futura dos algoritmos.  
-- Mudança de escopo do TCC.  
-- Problemas técnicos impeditivos no ambiente experimental.
+### 8.5 Variáveis Dependentes (Respostas)
+- Acurácia, F1-Score, Precisão, Recall, ROC-AUC
+- Taxa de degradação, Robustez relativa
 
----
+### 8.6 Variáveis de Controle / Bloqueio
+- Dataset utilizado
+- Divisão treino/teste
+- Hiperparâmetros dos algoritmos
+
+### 8.7 Possíveis Variáveis de Confusão Conhecidas
+- Características intrínsecas dos datasets
+- Complexidade do problema de classificação
+- Número de features e instâncias
+
+## 9. Desenho Experimental
+
+### 9.1 Tipo de Desenho
+Fatorial completamente randomizado com medidas repetidas
+
+### 9.2 Randomização e Alocação
+Ordem de execução dos tratamentos randomizada para controlar efeitos de aprendizado
+
+### 9.3 Balanceamento e Contrabalanço
+Cada algoritmo testado em todos os níveis de ruído com mesma quantidade de repetições
+
+### 9.4 Número de Grupos e Sessões
+12 grupos experimentais (3 algoritmos × 4 níveis de ruído) com 30 repetições cada
+
+## 10. População, Sujeitos e Amostragem
+
+### 10.1 População-Alvo
+Estudantes e profissionais com conhecimento em machine learning e classificação supervisionada
+
+### 10.2 Critérios de Inclusão de Sujeitos
+- Conhecimento básico em Python
+- Experiência com scikit-learn
+- Disponibilidade para participar do experimento
+
+### 10.3 Critérios de Exclusão de Sujeitos
+- Conflitos de interesse com ferramentas
+- Falta de conhecimento técnico mínimo
+- Restrições de tempo
+
+### 10.4 Tamanho da Amostra Planejado
+30 participantes por grupo (total: 360 observações)
+
+### 10.5 Método de Seleção / Recrutamento
+Amostra de conveniência entre estudantes de pós-graduação
+
+### 10.6 Treinamento e Preparação dos Sujeitos
+Sessão de treinamento sobre protocolo experimental e ferramentas
+
+## 11. Instrumentação e Protocolo Operacional
+
+### 11.1 Instrumentos de Coleta
+- Questionários online (Google Forms)
+- Scripts Python para coleta automática
+- Planilhas para registro manual
+
+### 11.2 Materiais de Suporte
+- Instruções detalhadas do experimento
+- Guia de uso das ferramentas
+- Template para registro de resultados
+
+### 11.3 Procedimento Experimental
+1. Recrutamento e treinamento
+2. Alocação randomizada
+3. Execução dos tratamentos
+4. Coleta de métricas
+5. Análise estatística
+
+### 11.4 Plano de Piloto
+Piloto com 5 participantes para validar instrumentos e procedimentos
+
+## 12. Plano de Análise de Dados (Pré-Execução)
+
+### 12.1 Estratégia Geral de Análise
+ANOVA two-way para testar efeitos principais e interações
+
+### 12.2 Métodos Estatísticos Planejados
+- Teste de normalidade (Shapiro-Wilk)
+- ANOVA fatorial
+- Testes post-hoc (Tukey HSD)
+- Análise de regressão
+
+### 12.3 Tratamento de Dados Faltantes e Outliers
+Exclusão de outliers extremos (> 3 DP) e imputação para dados faltantes
+
+### 12.4 Plano de Análise para Dados Qualitativos
+Análise de conteúdo para comentários e observações
+
+## 13. Avaliação de Validade (Ameaças e Mitigação)
+
+### 13.1 Validade de Conclusão
+**Ameaça:** Baixo poder estatístico  
+**Mitigação:** Cálculo amostral prévio e repetições adequadas
+
+### 13.2 Validade Interna
+**Ameaça:** Efeitos de aprendizagem  
+**Mitigação:** Contrabalanço e randomização
+
+### 13.3 Validade de Constructo
+**Ameaça:** Operacionalização inadequada das métricas  
+**Mitigação:** Uso de métricas consagradas na literatura
+
+### 13.4 Validade Externa
+**Ameaça:** Contexto específico acadêmico  
+**Mitigação:** Uso de datasets e algoritmos padrão
+
+### 13.5 Resumo das Principais Ameaças e Estratégias de Mitigação
+| Ameaça | Estratégia de Mitigação |
+|--------|-------------------------|
+| Baixo poder estatístico | Cálculo amostral adequado |
+| Vieses de seleção | Randomização e critérios claros |
+| Instrumentação inadequada | Validação por piloto |
+
+## 14. Ética, Privacidade e Conformidade
+
+### 14.1 Questões Éticas
+Participação voluntária com direito a desistência a qualquer momento
+
+### 14.2 Consentimento Informado
+Termo de consentimento explicando objetivos, riscos e benefícios
+
+### 14.3 Privacidade e Proteção de Dados
+Dados anonimizados e armazenados por 5 anos
+
+### 14.4 Aprovações Necessárias
+Comitê de ética institucional e orientador do TCC
+
+## 15. Recursos, Infraestrutura e Orçamento
+
+### 15.1 Recursos Humanos e Papéis
+- **PI:** Planejamento e execução
+- **Orientador:** Supervisão metodológica
+
+### 15.2 Infraestrutura Técnica Necessária
+- Computadores pessoais
+- Ambiente Python com bibliotecas ML
+- Ferramentas de análise estatística
+
+### 15.3 Materiais e Insumos
+- Licenças de software (open-source)
+- Serviços de cloud para processamento
+
+### 15.4 Orçamento e Custos Estimados
+Custos mínimos (ferramentas open-source e recursos próprios)
+
+## 16. Cronograma, Marcos e Riscos Operacionais
+
+### 16.1 Macrocronograma
+- **Semana 1-2:** Planejamento e validação
+- **Semana 3-4:** Recrutamento e piloto
+- **Semana 5-8:** Execução do experimento
+- **Semana 9-10:** Análise e relatório
+
+### 16.2 Dependências entre Atividades
+Validação ética → Recrutamento → Execução → Análise
+
+### 16.3 Riscos Operacionais e Plano de Contingência
+**Risco:** Baixa adesão no recrutamento  
+**Contingência:** Estender período ou ampliar critérios
+
+## 17. Governança do Experimento
+
+### 17.1 Papéis e Responsabilidades Formais
+- **PI:** Execução e análise
+- **Orientador:** Validação metodológica
+- **Participantes:** Execução das tarefas
+
+### 17.2 Ritos de Acompanhamento Pré-Execução
+Reuniões semanais com orientador durante planejamento
+
+### 17.3 Processo de Controle de Mudanças no Plano
+Mudanças aprovadas por PI e orientador, documentadas no histórico
+
+## 18. Plano de Documentação e Reprodutibilidade
+
+### 18.1 Repositórios e Convenções de Nomeação
+Repositório Git com estrutura padronizada de pastas e nomenclatura
+
+### 18.2 Templates e Artefatos Padrão
+- Template de consentimento
+- Scripts de análise padronizados
+- Formulários de coleta
+
+### 18.3 Plano de Empacotamento para Replicação Futura
+Documentação completa com Dockerfile e requirements.txt
+
+## 19. Plano de Comunicação
+
+### 19.1 Públicos e Mensagens-Chave Pré-Execução
+- **Participantes:** Objetivos e procedimentos
+- **Orientador:** Progresso e desafios
+- **Comunidade:** Resultados e insights
+
+### 19.2 Canais e Frequência de Comunicação
+- E-mail para comunicação formal
+- Reuniões semanais com orientador
+- Plataforma online para participantes
+
+### 19.3 Pontos de Comunicação Obrigatórios
+- Aprovação do plano
+- Início e término do recrutamento
+- Resultados finais
+
+## 20. Critérios de Prontidão para Execução (Definition of Ready)
+
+### 20.1 Checklist de Prontidão
+- [ ] Plano aprovado pelo orientador
+- [ ] Aprovação ética obtida
+- [ ] Instrumentos validados no piloto
+- [ ] Recrutamento concluído
+- [ ] Infraestrutura preparada
+
+### 20.2 Aprovações Finais para Iniciar a Operação
+Orientador e comitê de ética devem autorizar início da execução
