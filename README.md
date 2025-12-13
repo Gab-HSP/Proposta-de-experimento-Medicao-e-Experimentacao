@@ -292,65 +292,124 @@ Cada algoritmo testado em todos os níveis de ruído com mesma quantidade de rep
 ## 10. População, Sujeitos e Amostragem
 
 ### 10.1 População-Alvo
-Estudantes e profissionais com conhecimento em machine learning e classificação supervisionada
 
-### 10.2 Critérios de Inclusão de Sujeitos
-- Conhecimento básico em Python
-- Experiência com scikit-learn
-- Disponibilidade para participar do experimento
+A população-alvo deste experimento é composta por estudantes de pós-graduação e profissionais da área de Computação, Engenharia de Software e Ciência de Dados que possuam conhecimentos básicos em aprendizado de máquina supervisionado, especialmente em tarefas de classificação utilizando dados tabulares.
 
-### 10.3 Critérios de Exclusão de Sujeitos
-- Conflitos de interesse com ferramentas
-- Falta de conhecimento técnico mínimo
-- Restrições de tempo
+### 10.2 Sujeitos / Participantes
 
-### 10.4 Tamanho da Amostra Planejado
-30 participantes por grupo (total: 360 observações)
+Os sujeitos do experimento serão estudantes de pós-graduação em Engenharia de Software e áreas correlatas, atuando como operadores do experimento computacional. Embora o foco do estudo seja a avaliação de algoritmos (e não o desempenho humano), os participantes são responsáveis pela correta execução do protocolo experimental.
 
-### 10.5 Método de Seleção / Recrutamento
-Amostra de conveniência entre estudantes de pós-graduação
+### 10.3 Critérios de Inclusão
 
-### 10.6 Treinamento e Preparação dos Sujeitos
-Sessão de treinamento sobre protocolo experimental e ferramentas
+* Conhecimento básico em Python;
+* Familiaridade com bibliotecas de aprendizado de máquina (scikit-learn);
+* Compreensão de métricas de avaliação de classificação;
+* Disponibilidade para seguir integralmente o protocolo experimental.
+
+### 10.4 Critérios de Exclusão
+
+* Falta de conhecimento mínimo em programação Python;
+* Desconhecimento de conceitos básicos de classificação supervisionada;
+* Não cumprimento do treinamento ou do protocolo definido.
+
+### 10.5 Tamanho da Amostra Planejado
+
+O experimento considera 12 condições experimentais (3 algoritmos × 4 níveis de ruído), com 30 repetições por condição, totalizando 360 execuções experimentais. As repetições são necessárias para garantir estabilidade estatística e permitir análise de variabilidade.
+
+### 10.6 Método de Seleção / Recrutamento
+
+Será utilizada uma amostra de conveniência, composta por estudantes de pós-graduação da PUC Minas com interesse ou experiência em aprendizado de máquina, convidados por meio de comunicação direta e institucional.
+
+### 10.7 Treinamento e Preparação dos Sujeitos
+
+Antes da execução do experimento, os participantes receberão:
+
+* Um guia explicativo do experimento;
+* Instruções detalhadas sobre a execução dos scripts;
+* Exemplos de execução correta;
+* Orientações sobre registro e validação dos resultados.
+
+---
 
 ## 11. Instrumentação e Protocolo Operacional
 
-### 11.1 Instrumentos de Coleta
-- Questionários online (Google Forms)
-- Scripts Python para coleta automática
-- Planilhas para registro manual
+### 11.1 Instrumentos de Coleta de Dados
 
-### 11.2 Materiais de Suporte
-- Instruções detalhadas do experimento
-- Guia de uso das ferramentas
-- Template para registro de resultados
+* **Scripts em Python:** responsáveis por aplicar ruído, treinar modelos e calcular métricas;
+* **Bibliotecas:** scikit-learn, NumPy, Pandas;
+* **Planilhas eletrônicas:** para consolidação dos resultados;
+* **Questionário breve:** para caracterização dos participantes (experiência prévia).
 
-### 11.3 Procedimento Experimental
-1. Recrutamento e treinamento
-2. Alocação randomizada
-3. Execução dos tratamentos
-4. Coleta de métricas
-5. Análise estatística
+### 11.2 Variáveis, Métricas e Stakeholders Envolvidos
 
-### 11.4 Plano de Piloto
-Piloto com 5 participantes para validar instrumentos e procedimentos
+* **Variáveis independentes:** tipo de algoritmo, nível de ruído;
+* **Variáveis dependentes:** acurácia, F1-score, precisão, recall, ROC-AUC;
+* **Stakeholders envolvidos:** pesquisador (PI), professor orientador e participantes.
+
+### 11.3 Procedimento Experimental (Protocolo Passo a Passo)
+
+1. Seleção do dataset base (Iris, Wine ou Breast Cancer);
+2. Aplicação do nível de ruído definido (0%, 10%, 20% ou 30%);
+3. Divisão dos dados em conjuntos de treino e teste (70% / 30%);
+4. Treinamento do algoritmo selecionado (Regressão Logística, Decision Tree ou SVM);
+5. Execução da predição no conjunto de teste;
+6. Cálculo das métricas de desempenho;
+7. Registro dos resultados em planilha;
+8. Repetição do processo conforme o número de execuções planejado;
+9. Consolidação final dos dados para análise estatística.
+
+### 11.4 Fluxograma do Experimento (Operacionalização)
+
+```mermaid
+flowchart TD
+    A[Início do Experimento] --> B[Seleção do Dataset]
+    B --> C[Definição do Nível de Ruído]
+    C --> D[Aplicação do Ruído nos Dados]
+    D --> E[Divisão Treino/Teste]
+    E --> F[Seleção do Algoritmo]
+    F --> G[Treinamento do Modelo]
+    G --> H[Teste do Modelo]
+    H --> I[Cálculo das Métricas]
+    I --> J[Registro dos Resultados]
+    J --> K{Mais Repetições?}
+    K -- Sim --> C
+    K -- Não --> L[Consolidação dos Dados]
+    L --> M[Fim do Experimento]
+```
+
+### 11.5 Plano de Piloto
+
+Será realizado um piloto com 5 execuções completas para verificar:
+
+* Correto funcionamento dos scripts;
+* Consistência das métricas coletadas;
+* Clareza das instruções fornecidas aos participantes.
+
+---
 
 ## 12. Plano de Análise de Dados (Pré-Execução)
 
 ### 12.1 Estratégia Geral de Análise
-ANOVA two-way para testar efeitos principais e interações
+
+Os dados coletados serão analisados para responder às questões de pesquisa por meio da comparação do desempenho dos algoritmos sob diferentes níveis de ruído, avaliando efeitos principais e interações entre fatores.
 
 ### 12.2 Métodos Estatísticos Planejados
-- Teste de normalidade (Shapiro-Wilk)
-- ANOVA fatorial
-- Testes post-hoc (Tukey HSD)
-- Análise de regressão
+
+* Estatísticas descritivas (média, desvio padrão);
+* Teste de normalidade (Shapiro-Wilk);
+* ANOVA fatorial two-way (algoritmo × nível de ruído);
+* Testes post-hoc (Tukey HSD);
+* Análise de regressão para identificar padrões de degradação.
 
 ### 12.3 Tratamento de Dados Faltantes e Outliers
-Exclusão de outliers extremos (> 3 DP) e imputação para dados faltantes
 
-### 12.4 Plano de Análise para Dados Qualitativos
-Análise de conteúdo para comentários e observações
+* Dados faltantes serão tratados por exclusão da execução específica;
+* Outliers extremos (acima de 3 desvios padrão) serão analisados e, se necessário, removidos com justificativa documentada.
+
+### 12.4 Análise de Variabilidade e Robustez
+
+Serão avaliadas a variância e a estabilidade das métricas ao longo das repetições, permitindo identificar algoritmos mais robustos ao ruído e níveis críticos de degradação de desempenho.
+
 
 ## 13. Avaliação de Validade (Ameaças e Mitigação)
 
