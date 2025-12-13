@@ -413,28 +413,102 @@ Serão avaliadas a variância e a estabilidade das métricas ao longo das repeti
 
 ## 13. Avaliação de Validade (Ameaças e Mitigação)
 
+Esta seção apresenta a análise sistemática das ameaças à validade do experimento proposto, bem como as estratégias de mitigação planejadas. A estrutura segue a taxonomia clássica da Engenharia de Software Empírica, cobrindo validade de conclusão, interna, de constructo e externa.
+
+---
+
 ### 13.1 Validade de Conclusão
-**Ameaça:** Baixo poder estatístico  
-**Mitigação:** Cálculo amostral prévio e repetições adequadas
+
+A validade de conclusão está relacionada ao grau de confiança de que os resultados estatísticos obtidos refletem relações reais entre as variáveis estudadas.
+
+**Principais ameaças:**
+
+* Baixo poder estatístico devido a número insuficiente de repetições;
+* Violação das premissas dos testes estatísticos (normalidade e homocedasticidade);
+* Erros de medição das métricas de desempenho;
+* Comparações múltiplas aumentando a chance de erro do Tipo I.
+
+**Estratégias de mitigação:**
+
+* Planejamento prévio do tamanho amostral e uso de múltiplas repetições por tratamento;
+* Aplicação de testes de normalidade (Shapiro-Wilk) antes da escolha dos testes estatísticos;
+* Uso de métricas consagradas e implementações consolidadas (scikit-learn);
+* Aplicação de testes post-hoc apropriados (Tukey HSD) para controle de comparações múltiplas.
+
+---
 
 ### 13.2 Validade Interna
-**Ameaça:** Efeitos de aprendizagem  
-**Mitigação:** Contrabalanço e randomização
+
+A validade interna diz respeito à confiança de que os efeitos observados são causados pelas variáveis independentes manipuladas, e não por fatores externos ou vieses.
+
+**Principais ameaças:**
+
+* Efeitos de ordem ou aprendizado durante a execução repetida dos tratamentos;
+* Influência de configurações não controladas dos algoritmos;
+* Diferenças não controladas entre datasets utilizados;
+* Erros humanos na execução do protocolo experimental.
+
+**Estratégias de mitigação:**
+
+* Randomização da ordem de execução dos tratamentos;
+* Padronização dos hiperparâmetros dos algoritmos;
+* Uso de datasets de benchmark amplamente conhecidos;
+* Definição de um protocolo operacional claro e execução automatizada por scripts.
+
+---
 
 ### 13.3 Validade de Constructo
-**Ameaça:** Operacionalização inadequada das métricas  
-**Mitigação:** Uso de métricas consagradas na literatura
+
+A validade de constructo avalia se as métricas e operacionalizações utilizadas representam corretamente os conceitos teóricos que se deseja estudar.
+
+**Principais ameaças:**
+
+* Métricas escolhidas não refletirem adequadamente o conceito de desempenho do modelo;
+* Interpretação inadequada de métricas isoladas (por exemplo, acurácia em datasets desbalanceados);
+* Operacionalização simplificada do conceito de ruído nos dados.
+
+**Estratégias de mitigação:**
+
+* Uso de múltiplas métricas complementares (acurácia, F1-score, precisão, recall, ROC-AUC);
+* Análise conjunta das métricas, evitando conclusões baseadas em uma única medida;
+* Definição explícita do tipo e do nível de ruído aplicado aos dados;
+* Alinhamento das métricas com o framework GQM definido previamente.
+
+---
 
 ### 13.4 Validade Externa
-**Ameaça:** Contexto específico acadêmico  
-**Mitigação:** Uso de datasets e algoritmos padrão
+
+A validade externa está relacionada ao grau em que os resultados do experimento podem ser generalizados para outros contextos, algoritmos ou tipos de dados.
+
+**Principais ameaças:**
+
+* Uso exclusivo de datasets tabulares clássicos e de pequeno porte;
+* Avaliação restrita a três algoritmos de classificação;
+* Contexto acadêmico, que pode não refletir ambientes industriais reais;
+* Uso de ruído sintético em vez de ruído real de produção.
+
+**Estratégias de mitigação:**
+
+* Seleção de datasets amplamente utilizados na literatura;
+* Comparação entre algoritmos de naturezas diferentes (linear, árvore, kernel);
+* Descrição detalhada do contexto experimental para permitir julgamento de transferibilidade;
+* Discussão explícita das limitações de generalização nos resultados.
+
+---
 
 ### 13.5 Resumo das Principais Ameaças e Estratégias de Mitigação
-| Ameaça | Estratégia de Mitigação |
-|--------|-------------------------|
-| Baixo poder estatístico | Cálculo amostral adequado |
-| Vieses de seleção | Randomização e critérios claros |
-| Instrumentação inadequada | Validação por piloto |
+
+| Tipo de Validade | Ameaça Principal                   | Estratégia de Mitigação                   |
+| ---------------- | ---------------------------------- | ----------------------------------------- |
+| Conclusão        | Baixo poder estatístico            | Repetições e planejamento amostral        |
+| Conclusão        | Violação de premissas estatísticas | Testes de normalidade e métodos adequados |
+| Interna          | Efeitos de ordem                   | Randomização da execução                  |
+| Interna          | Variáveis não controladas          | Padronização de configurações             |
+| Constructo       | Métricas inadequadas               | Uso de múltiplas métricas                 |
+| Constructo       | Interpretação isolada              | Análise conjunta e GQM                    |
+| Externa          | Contexto específico                | Descrição detalhada do experimento        |
+| Externa          | Ruído sintético                    | Discussão explícita das limitações        |
+
 
 ## 14. Ética, Privacidade e Conformidade
 
